@@ -1,0 +1,5 @@
+Weapon name
++Damage
++str
++agi
++Def

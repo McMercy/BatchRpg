@@ -7,11 +7,19 @@ set pName=Player
 set pLeftHand=TrainingSword
 set pRightHand=RookieShiled
 
+set /a pStr=5
+set /a pAgi=5
+set /a pDef=5
+
 rem | Enemy variables
 set /a eHp=100
 set eName=Enemy
 set eLeftHand=Fist
 set eRightHand=Fist
+
+set /a eStr=1
+set /a eAgi=1
+set /a eDef=1
 
 rem | Guide variables
 set prevMenu=ShowStats
@@ -61,7 +69,7 @@ goto %prevMenu%
 
 :initBattle
 cls
-set /A inBaLvl=%RANDOM% * %pLvl% / 32768 + 1
+set /a inBaLvl=%RANDOM% * %pLvl% / 32768 + 1
 echo Chose enemy lvl (%inBaLvl%) Based on your level (%pLvl%)
 
 IF "%inBaLvl%"=="1" set newEnemy=goblin
@@ -70,6 +78,9 @@ IF "%inBaLvl%"=="1" set newEnemy=goblin
 set /p eName=
 set /p eLeftHand=
 set /p eRightHand=
+set /p eStr=
+set /p eAgi=
+set /p eDef=
 )<Enemies\%newEnemy%.txt
 
 echo. Found %eName%
@@ -107,7 +118,40 @@ echo.
 
 set /p attack=Select your action: 
 if "%attack%"=="stats" goto ShowStats
+if "%attack%"=="attack" (
+set target=eHp
+goto attack
+)
 goto Battle
+
+:attack
+set /a tempDmg=0
+set /a tempStr=0
+set /a tempAgi=0
+set /a tempDef=0
+
+if "%target%"=="eHp" (
+	if exist Weapons\%pLeftHand%.txt (
+		echo found weapon
+		(
+		set /p dummy=
+		set /p tempStr=
+		set /p tempAgi=
+		set /p tempDef=
+		)<Weapons\%pLeftHand%.txt
+	)
+	set /a tempStr+=%pStr%
+	set /a tempAgi+=%pAgi%
+	set /a tempDef+=%pDef%
+)
+
+echo Dmg %tempDmg%
+echo Str = %tempStr%
+echo Agi = %tempAgi%
+echo Def = %tempDef%
+
+set /p dummy=press enter..
+goto battle
 
 :End
 echo Saving...
