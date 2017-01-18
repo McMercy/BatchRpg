@@ -20,9 +20,9 @@ set eName=Enemy
 set eLeftHand=Fist
 set eRightHand=Fist
 
-set /a eStr=1
-set /a eAgi=1
-set /a eDef=1
+set /a eStr=5
+set /a eAgi=5
+set /a eDef=5
 
 rem | Guide variables
 set prevMenu=ShowStats
@@ -69,6 +69,11 @@ echo Left hand: %pLeftHand%
 echo Right hand: %pRightHand%
 set /p dummy=Press Enter to go back..
 goto %prevMenu%
+
+:world
+cls
+set /p dummy=need functionality here
+goto world
 
 :initBattle
 cls
@@ -119,6 +124,9 @@ echo.
 echo.
 echo.
 
+rem | Check for victory
+if %eHp% LEQ 0 goto Battle_Victory
+
 set /p attack=Select your action: 
 if "%attack%"=="stats" goto ShowStats
 if "%attack%"=="attack" (
@@ -129,7 +137,10 @@ goto Battle
 
 :Battle_Victory
 echo.
-echoYou won the battle agains %eName%!
+echo You won the battle agains %eName%!
+
+set /p dummy=press enter to continue...
+goto world
 
 :attack
 set /a tempDmg=0
@@ -184,8 +195,12 @@ if "%target%"=="pHp" (
 set /a pHp -= %tempDmg% * %eStr% / %pDef%
 )
 
+goto enemyTurn
 
-goto battle
+:enemyTurn
+
+set target="pHp"
+goto Battle
 
 :End
 echo Saving...
