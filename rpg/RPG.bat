@@ -17,6 +17,7 @@ rem | Guide variables
 set prevMenu=ShowStats
 
 :Main
+cls
 color B
 set prevMenu=Main
 cls
@@ -24,13 +25,21 @@ echo RPG game for bendik my man
 echo Options:
 echo 1. New Game
 echo 2. Continue //Incomplete
-echo 3. How to play //Incomplete
+echo 3. Readme
 echo 4. exit
 
 set /p action=Enter action:
 
 if "%action%"=="new game" goto NewGame
+if "%action%"=="readme" goto readme
 if "%action%"=="exit" goto End
+goto Main
+
+:readme
+cls
+type test.txt
+echo.
+set /p dummy=Press ENTER...
 goto Main
 
 :NewGame
