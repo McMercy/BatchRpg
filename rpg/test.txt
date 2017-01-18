@@ -1,0 +1,13 @@
+echo ========//Options//========	========//Enemy Stats//==========
+echo 0. stats			Type: %eName%
+echo					Hp: %eHp%
+echo 1. attack			Left hand: %eLeftHand%
+echo 2. run				Right hand: %eRightHand%
+echo ===========================	=================================
+echo.
+echo =========//Items//=========	========//Player Stats//=========
+echo 0. HpPotion			Name: %pName%		
+echo 				Hp: %pHp%
+echo 1. ---				Left hand: %pLeftHand%
+echo 2. ---				Right hand: %pRightHand%
+echo ===========================	=================================
