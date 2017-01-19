@@ -32,7 +32,7 @@ cls
 color B
 set prevMenu=Main
 cls
-echo RPG game for bendik my man
+echo RPG game for bendik the gay man
 echo Options:
 echo 1. New Game
 echo 2. Continue //Incomplete
@@ -41,9 +41,13 @@ echo 4. exit
 
 set /p action=Enter action:
 
-if "%action%"=="new game" goto NewGame
-if "%action%"=="readme" goto readme
-if "%action%"=="exit" goto End
+if /i %action%=="new game" goto NewGame
+if /i %action%=="readme" goto readme
+if /i %action%=="exit" goto End 
+if %action%==1 goto NewGame
+if %action%==3 goto readme
+if %action%==4 goto End 
+
 goto Main
 
 :readme
@@ -207,6 +211,6 @@ goto Battle
 
 :End
 echo Saving...
-echo Save Failed! Error: Not yet impomented
+echo Save Failed! Error: Not yet implmented
 echo You can now close the prompt
 set /p dummy=Press enter to exit..
