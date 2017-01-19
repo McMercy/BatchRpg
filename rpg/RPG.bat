@@ -55,7 +55,7 @@ goto Main
 
 :NewGame
 echo Started new game %Date% %Time% >> log.txt
-goto initBattle
+goto world
 
 :ShowStats
 color 6
@@ -72,7 +72,10 @@ goto %prevMenu%
 
 :world
 cls
-set /p dummy=need functionality here
+set travelText=You wander further into the forest...
+set /p dummy=%travelText%
+set /a tempRand=%RANDOM% * 10 / 32768 + 1 rem : sets variable to random number inBetween 1-10
+if %tempRand% LSS 5 goto initBattle
 goto world
 
 :initBattle
